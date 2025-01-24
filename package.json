@@ -4,6 +4,9 @@
   "description": "O projeto é a simulação de uma API em node.js utilizando recursos da AWS com linguagem typescript",
   "main": "server.ts",
   "scripts": {
+    "dev": "npx nodemon src/server.ts --watch 'src/' -e ts",
+    "build": "npx tsc",
+    "start": "node ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
