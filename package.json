@@ -1,0 +1,27 @@
+{
+    "name": "rest-delivery",
+    "version": "1.0.0",
+    "description": "O projeto é a simulação de uma API em node.js utilizando recursos da AWS com linguagem typescript",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Igfernandes/rest-delivery.git"
+    },
+    "keywords": [
+        "API",
+        "promise",
+        "AWS",
+        "services",
+        "Login"
+    ],
+    "author": "Fernandes",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Igfernandes/rest-delivery/issues"
+    },
+    "homepage": "https://github.com/Igfernandes/rest-delivery#readme"
+}
+  
