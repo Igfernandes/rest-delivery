@@ -2,7 +2,7 @@
   "name": "rest-delivery",
   "version": "1.0.0",
   "description": "O projeto é a simulação de uma API em node.js utilizando recursos da AWS com linguagem typescript",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
