@@ -1,12 +1,24 @@
 import { attribute, Entity } from "dynamode";
 import { UserProps } from "./type";
-import { numberDate, stringDate } from "dynamode/decorators/helpers/dates";
+import { IEntity } from "../types";
 
 const prefixDeclaration = {
   prefix: process.env.DATABASE_PREFIX,
 };
 
-export class User extends Entity {
+export class UserEntity extends Entity implements IEntity {
+  /**
+   * @property {string} table
+   * - (EN): The fullname of user.
+   * - (pt-BR): O nome completo do usuário
+   */
+  table: string = "users";
+
+  /**
+   * @property {string} objectId
+   * - (EN): The identify of user.
+   * - (pt-BR): O identificador do usuário.
+   */
   @attribute.partitionKey.string(prefixDeclaration)
   objectId: string;
 
@@ -19,7 +31,7 @@ export class User extends Entity {
   name: string;
 
   /**
-   * @property {string} name
+   * @property {string} birthdate
    * - (EN): The birthdate of user with only day,month and year.
    * - (pt-BR): A data de aniversário do usuário apenas com o dia, mês e ano.
    */
@@ -27,7 +39,7 @@ export class User extends Entity {
   birthdate: Date;
 
   /**
-   * @property {string} name
+   * @property {string} status
    * - (EN): The status of user. Possibles status: 'Active', 'Inactive'.
    * - (pt-BR): O status do usuário. Possibilidades de status: 'Active', 'Inactive'.
    */
@@ -35,7 +47,7 @@ export class User extends Entity {
   status: string;
 
   /**
-   * @property {Date} name
+   * @property {Date} createdAt
    * - (EN): The date creation of user with value by seconds.
    * - (pt-BR): A data de criação do usuário por segundos.
    */
@@ -43,7 +55,7 @@ export class User extends Entity {
   createdAt: Date;
 
   /**
-   * @property {Date} name
+   * @property {Date} updatedAt
    * - (EN): The date updating of user with value by seconds.
    * - (pt-BR): A data de atualização do usuário por segundos.
    */
