@@ -8,7 +8,7 @@ const prefixDeclaration = {
 
 export class User extends Entity {
   @attribute.partitionKey.string(prefixDeclaration)
-  object_id: string;
+  objectId: string;
 
   /**
    * @property {string} name
@@ -40,7 +40,7 @@ export class User extends Entity {
    * - (pt-BR): A data de criação do usuário por segundos.
    */
   @attribute.date.number()
-  created_at: Date;
+  createdAt: Date;
 
   /**
    * @property {Date} name
@@ -48,23 +48,23 @@ export class User extends Entity {
    * - (pt-BR): A data de atualização do usuário por segundos.
    */
   @attribute.date.number()
-  updated_at: Date;
+  updatedAt: Date;
 
   constructor({
     name,
-    object_id,
+    objectId,
     birthdate,
     status,
-    created_at,
-    updated_at,
+    createdAt,
+    updatedAt,
   }: UserProps) {
     super();
 
-    this.object_id = object_id;
+    this.objectId = objectId;
     this.name = name;
     this.birthdate = birthdate;
     this.status = status;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 }

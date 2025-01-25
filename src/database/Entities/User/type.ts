@@ -1,10 +1,10 @@
 export type UserProps = {
-  object_id: string;
+  objectId: string;
   name: string;
   birthdate: Date;
   status: UserStatus;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type UserStatus = 'ACTIVE' | 'INACTIVE'
