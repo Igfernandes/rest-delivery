@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  dynamodb-local:
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    command: "-jar DynamoDBLocal.jar -inMemory -sharedDb"
+    ports: ["8001:5240"]
+  aws-cli:
+    depends_on:
+      - dynamodb-local
+    image: amazon/aws-cli
+    container_name: aws-cli
+    ports:
+      - "9000:9000"
+    environment:
+      AWS_ACCESS_KEY_ID: 'DUMMYIDEXAMPLE'
+      AWS_SECRET_ACCESS_KEY: 'DUMMYEXAMPLEKEY'
+      AWS_REGION: 'us-west-2'
+    command: dynamodb describe-limits --endpoint-url http://dynamodb-local:5240

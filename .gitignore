@@ -8,3 +8,4 @@ dist
 # System
 .env
 
+docker/dynamodb/shared-local-instance.db
