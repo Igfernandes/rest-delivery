@@ -28,8 +28,12 @@
   "homepage": "https://github.com/Igfernandes/rest-delivery#readme",
   "devDependencies": {
     "@types/dotenv": "^8.2.3",
+    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3",
-    "nodemon": "^3.1.9"
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@types/dynamodb": "^1.3.7",
+    "dynamodb": "^1.3.0"
   }
 }
