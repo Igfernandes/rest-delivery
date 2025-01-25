@@ -1,15 +1,29 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@providers/*": ["src/providers/*", "dist/src/providers/*"],
+      "@middlewares/*": ["src/middlewares/*", "dist/src/middlewares/*"],
+      "@constants/*": ["src/constants/*", "dist/src/constants/*"],
+      "@helpers/*": ["src/helpers/*", "dist/src/helpers/*"],
+      "@repositories/*": [
+        "src/database/repositories/*",
+        "dist/src/database/repositories/*"
+      ],
+      "@database/*": ["src/database/*", "dist/src/database/*"],
+      "@models/*": ["src/database/Entities/*", "dist/src/database/Entities/*"]
+    },
+    "sourceMap": true,
     "target": "ES2017",
     "module": "commonjs",
     "rootDir": "./src/",
     "moduleResolution": "node",
-    "baseUrl": ".",
     "outDir": "./dist/",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "experimentalDecorators": true
   },
   "ts-node": { "transpileOnly": true }
 }
