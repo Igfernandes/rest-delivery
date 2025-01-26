@@ -5,7 +5,7 @@
 (EN)- Install docker or docker desktop and before execute in terminal this line command: 
 (pt-BR)- Depois de instalar o docker ou docker desktop, execute no seu terminal o comando:
 
-> docker run -p 8000:8000 --nname dyamo-db-local amazon/dynamodb-local:latest
+> docker run -p 8000:8000 --name dynamo-db-local amazon/dynamodb-local:latest
 
 ## SECOND STEP
 (EN)- You need download AWS CLI and configure in your PC. Link:
