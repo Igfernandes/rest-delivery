@@ -1,12 +1,12 @@
-import { attribute, Entity } from "dynamode";
+import attribute from "dynamode/decorators";
 import { UserProps } from "./type";
-import { IEntityBase, IEntity } from "../types";
+import { Entity } from "dynamode";
 
 const prefixDeclaration = {
   prefix: process.env.DATABASE_PREFIX,
 };
 
-export class UserEntity extends Entity implements IEntityBase {
+export class UserEntity extends Entity {
   /**
    * @property {string} table
    * - (EN): The fullname of user.
@@ -19,7 +19,7 @@ export class UserEntity extends Entity implements IEntityBase {
    * - (EN): The identify of user.
    * - (pt-BR): O identificador do usuário.
    */
-  @attribute.partitionKey.string(prefixDeclaration)
+  @attribute.partitionKey.string()
   objectId: string;
 
   /**
@@ -27,7 +27,7 @@ export class UserEntity extends Entity implements IEntityBase {
    * - (EN): The fullname of user.
    * - (pt-BR): O nome completo do usuário
    */
-  @attribute.string(prefixDeclaration)
+  @attribute.string()
   name: string;
 
   /**
@@ -35,7 +35,7 @@ export class UserEntity extends Entity implements IEntityBase {
    * - (EN): The birthdate of user with only day,month and year.
    * - (pt-BR): A data de aniversário do usuário apenas com o dia, mês e ano.
    */
-  @attribute.date.string(prefixDeclaration)
+  @attribute.date.string()
   birthdate: Date;
 
   /**
@@ -43,7 +43,7 @@ export class UserEntity extends Entity implements IEntityBase {
    * - (EN): The status of user. Possibles status: 'Active', 'Inactive'.
    * - (pt-BR): O status do usuário. Possibilidades de status: 'Active', 'Inactive'.
    */
-  @attribute.string(prefixDeclaration)
+  @attribute.string()
   status: string;
 
   /**

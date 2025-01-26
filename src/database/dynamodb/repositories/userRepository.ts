@@ -1,7 +1,7 @@
-import { UserEntity } from "@database/Entities/User/userEntity";
+import { UserProps } from "../entities/User/type";
+import { UserEntity } from "../entities/User/userEntity";
 import { IRepository } from "./IRepository";
 import { TableManager } from "dynamode";
-import { UserProps } from "@database/Entities/User/type";
 
 export class UserRepository implements IRepository {
   private dynamodb;
