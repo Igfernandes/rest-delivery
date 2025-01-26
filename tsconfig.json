@@ -1,29 +1,30 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "ES2017",
+    "module": "commonjs",
+    "rootDir": "./src/",
+    "outDir": "./dist/",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": ".",
     "paths": {
       "@providers/*": ["src/providers/*", "dist/src/providers/*"],
       "@middlewares/*": ["src/middlewares/*", "dist/src/middlewares/*"],
       "@constants/*": ["src/constants/*", "dist/src/constants/*"],
       "@helpers/*": ["src/helpers/*", "dist/src/helpers/*"],
-      "@repositories/*": [
-        "src/database/repositories/*",
-        "dist/src/database/repositories/*"
-      ],
-      "@database/*": ["src/database/*", "dist/src/database/*"],
-      "@models/*": ["src/database/Entities/*", "dist/src/database/Entities/*"]
-    },
-    "sourceMap": true,
-    "target": "ES2017",
-    "module": "commonjs",
-    "rootDir": "./src/",
-    "moduleResolution": "node",
-    "outDir": "./dist/",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "experimentalDecorators": true
+      "@data/*": ["src/data/*", "dist/src/data/*"],
+      "@database/*": ["src/database/*", "dist/src/database/*"]
+    }
   },
-  "ts-node": { "transpileOnly": true }
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "transpileOnly": true,
+    "require": ["tsconfig-paths/register", "dotenv/config"]
+  }
 }
