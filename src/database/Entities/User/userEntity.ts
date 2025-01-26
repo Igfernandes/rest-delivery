@@ -1,18 +1,18 @@
 import { attribute, Entity } from "dynamode";
 import { UserProps } from "./type";
-import { IEntity } from "../types";
+import { IEntityBase, IEntity } from "../types";
 
 const prefixDeclaration = {
   prefix: process.env.DATABASE_PREFIX,
 };
 
-export class UserEntity extends Entity implements IEntity {
+export class UserEntity extends Entity implements IEntityBase {
   /**
    * @property {string} table
    * - (EN): The fullname of user.
    * - (pt-BR): O nome completo do usuário
    */
-  table: string = "users";
+  table: string = "users" as const;
 
   /**
    * @property {string} objectId

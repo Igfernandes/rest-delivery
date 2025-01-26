@@ -7,4 +7,4 @@ export type UserProps = {
   updatedAt: Date;
 };
 
-export type UserStatus = 'ACTIVE' | 'INACTIVE'
+export type UserStatus = "ACTIVE" | "INACTIVE";
