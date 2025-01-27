@@ -9,5 +9,5 @@ export interface IRepository {
 
   // findFirst(where: object): Promise<Entity>;
 
-  findAll(where: object): Promise<Entity[]>;
+  // findAll(where: object): Promise<Entity[]>;
 }

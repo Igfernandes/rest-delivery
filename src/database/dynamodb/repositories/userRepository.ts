@@ -1,5 +1,5 @@
-import { UserProps } from "../entities/User/type";
-import { UserEntity } from "../entities/User/userEntity";
+import { UserProps } from "../entities/User/user/type";
+import { UserEntity } from "../entities/User/user/userEntity";
 import { IRepository } from "./IRepository";
 import { TableManager } from "dynamode";
 
@@ -44,7 +44,7 @@ export class UserRepository implements IRepository {
           objectId,
         },
         {
-          set: entity,
+          setIfNotExists: {},
         }
       );
 
@@ -65,7 +65,7 @@ export class UserRepository implements IRepository {
           .eq(propValue);
       });
 
-      const user = await this.dynamodb.delete({
+      await this.dynamodb.delete({
         objectId,
       });
 
@@ -76,28 +76,28 @@ export class UserRepository implements IRepository {
     }
   }
 
-  public async findAll(where: object): Promise<UserEntity[]> {
-    try {
-      const user = await this.dynamodb
-        .query()
-        .sort("descending")
-        .run({ return: "output" });
+  // public async findAll(where: object): Promise<UserEntity[]> {
+  //   try {
+  //     const user = await this.dynamodb
+  //       .query()
+  //       .sort("descending")
+  //       .run({ return: "output" });
 
-      return [
-        new UserEntity({
-          updatedAt: new Date(),
-          status: "ACTIVE",
-          objectId: "seial",
-          name: "teste",
-          createdAt: new Date(),
-          birthdate: new Date(),
-        }),
-      ];
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  }
+  //     return [
+  //       new UserEntity({
+  //         updatedAt: new Date(),
+  //         status: "ACTIVE",
+  //         objectId: "seial",
+  //         name: "teste",
+  //         createdAt: new Date(),
+  //         birthdate: new Date(),
+  //       }),
+  //     ];
+  //   } catch (err) {
+  //     console.log(err);
+  //     throw err;
+  //   }
+  // }
 
   //   findFirst(where: object): Promise<UserEntity> {}
 }

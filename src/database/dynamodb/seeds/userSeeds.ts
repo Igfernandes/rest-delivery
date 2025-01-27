@@ -1,6 +1,7 @@
+import { messages } from "src/constants/messages";
 import { users } from "../../../data/users";
+import { UserEntity } from "../entities/User/user/userEntity";
 import { UserRepository } from "../repositories/userRepository";
-import { UserEntity } from "../entities/User/userEntity";
 
 export class UserSeeds {
   public async run() {
@@ -9,11 +10,11 @@ export class UserSeeds {
 
       for (const user of users) {
         await userRepository.save(new UserEntity(user));
-        console.log(`Inserido o usuário ${user.name}`);
+        console.log(messages.success.seeds.insert("users", user.name));
       }
     } catch (err) {
-      console.log(`Error no seed de users`);
-      console.log(err);
+      console.log(messages.errors.seeds.genericError("users"));
+      throw console.log(err);
     }
   }
 }
