@@ -3,7 +3,7 @@ import { UsersMigration } from "./UserGroup/users_25_01_25";
 
 (async function () {
   const instanceDb = new InstanceDatabase();
-  instanceDb.getInstance().ddb.local("http://localhost:8000");
+  instanceDb.getInstance().ddb.local();
 
   /** USERS GROUP */
   const usersMigration = new UsersMigration();
