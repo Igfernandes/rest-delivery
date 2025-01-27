@@ -1,5 +1,5 @@
 import { UserProps } from "@database/dynamodb/entities/User/user/type";
-import { generateKeys } from "@helpers/generateKeys";
+import { generateKey } from "@helpers/generateKey";
 import { addresses } from "./addresses";
 import { contacts } from "./contacts";
 import { ContactEntity } from "@database/dynamodb/entities/User/contact";
@@ -9,7 +9,7 @@ const { companyMarket, home, university } = addresses;
 
 export const users = [
   {
-    objectId: generateKeys("adm", "master"),
+    objectId: generateKey("adm", "master"),
     name: "Admin Master",
     birthdate: new Date("1998-10-20"),
     status: "ACTIVE",
@@ -23,7 +23,7 @@ export const users = [
     updatedAt: new Date(),
   },
   {
-    objectId: generateKeys("adm", "test"),
+    objectId: generateKey("adm", "test"),
     name: "Admin Test",
     birthdate: new Date("1995-12-20"),
     status: "ACTIVE",
@@ -37,7 +37,7 @@ export const users = [
     updatedAt: new Date(),
   },
   {
-    objectId: generateKeys("only", "read"),
+    objectId: generateKey("only", "read"),
     name: "Only Desative User",
     birthdate: new Date("2002-05-05"),
     status: "INACTIVE",

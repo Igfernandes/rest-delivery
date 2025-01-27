@@ -1,8 +1,6 @@
 import attribute from "dynamode/decorators";
 import { Entity } from "dynamode";
 import { UserProps } from "./type";
-import { ContactEntity } from "../contact";
-import { AddressEntity } from "../address";
 import { ContactProps } from "../contact/type";
 import { AddressProps } from "../address/type";
 

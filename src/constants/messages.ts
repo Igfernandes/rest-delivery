@@ -8,6 +8,11 @@ export const messages = {
       genericError: (tableName: string) =>
         `Error nos seeds ao alimentar a tabela ${tableName}`,
     },
+    values: {
+      invalid: "Valor passado encontra-se inválido.",
+      onlyStrings:
+        "Só podem ser passados nos parâmetros valores do tipo string",
+    },
   },
   success: {
     seeds: {

@@ -8,4 +8,8 @@ dist
 # System
 .env
 
+# Database
 docker/dynamodb/shared-local-instance.db
+
+# Tests
+coverage

@@ -9,7 +9,7 @@
     "start": "node ./dist/server.js",
     "seeds:dev": "npx ts-node ./src/database/dynamodb/seeds/seeds.dev.ts",
     "migrations": "npx ts-node ./src/database/dynamodb/migrations/index.ts",
-    "test": "npx jest --config=./src/infra/config/jest.config.js --no-cach --coverage"
+    "test": "npx jest --no-cach --coverage"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,9 @@
   },
   "homepage": "https://github.com/Igfernandes/rest-delivery#readme",
   "devDependencies": {
+    "@babel/preset-typescript": "^7.26.0",
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.14",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
@@ -36,8 +39,11 @@
   "dependencies": {
     "@babel/preset-env": "^7.26.7",
     "@types/dynamodb": "^1.3.7",
-    "@types/jest": "^29.5.14",
     "@types/node": "^22.10.10",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "dotenv": "^16.4.7",
     "dynamodb": "^1.3.0",
     "dynamodb-data-types": "^4.0.1",

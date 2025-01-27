@@ -16,12 +16,12 @@
     "paths": {
       "@providers/*": ["src/providers/*", "dist/src/providers/*"],
       "@middlewares/*": ["src/middlewares/*", "dist/src/middlewares/*"],
-      "@constants/*": ["src/constants/*", "dist/src/constants/*"],
+      "@constants/*": ["src/data/*", "dist/src/constants/*"],
       "@helpers/*": ["src/helpers/*", "dist/src/helpers/*"],
-      "@data/*": ["src/data/*", "dist/src/data/*"],
       "@database/*": ["src/database/*", "dist/src/database/*"]
     }
   },
+  "types": ["jest"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "transpileOnly": true,
