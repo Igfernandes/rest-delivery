@@ -4,7 +4,6 @@
   "description": "O projeto é a simulação de uma API em node.js utilizando recursos da AWS com linguagem typescript",
   "main": "server.ts",
   "scripts": {
-    "dev": "npx nodemon src/server.ts --watch 'src/' -e ts",
     "seeds:dev": "npx ts-node ./src/database/dynamodb/seeds/seeds.dev.ts",
     "migrations": "npx ts-node ./src/database/dynamodb/migrations/index.ts",
     "test": "npx jest --no-cach --coverage",
