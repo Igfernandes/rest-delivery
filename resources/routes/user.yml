@@ -1,0 +1,20 @@
+# Serverless Framework specific syntax
+
+UserCreate:
+  handler: ./src/handles/users/create.handler
+  role: FunctionRole
+  events:
+    - httpApi:
+        path: /api/users
+        method: POST
+  environment:
+    CUSTOM_VAR: ${self:custom.customVariable1}
+UserUpdate:
+  handler: ./src/handles/users/update.handler
+  role: FunctionRole
+  events:
+    - httpApi:
+        path: /api/users
+        method: POST
+  environment:
+    CUSTOM_VAR: ${self:custom.customVariable1}
