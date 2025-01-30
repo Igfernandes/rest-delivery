@@ -7,12 +7,8 @@
     "seeds:dev": "npx ts-node ./src/database/dynamodb/seeds/seeds.dev.ts",
     "migrations": "npx ts-node ./src/database/dynamodb/migrations/index.ts",
     "test": "npx jest --no-cach --coverage",
-    "invoke:Function1": "sls invoke local -f Function1 -s dev",
     "start:api": "serverless offline -s dev",
-    "deploy:dev": "sls deploy -s dev",
-    "lint": "eslint --ext .ts --fix .",
-    "prettier": "prettier --write --ignore-unknown .",
-    "prepare": "husky install"
+    "deploy:dev": "sls deploy -s dev"
   },
   "repository": {
     "type": "git",

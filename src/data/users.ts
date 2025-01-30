@@ -13,7 +13,7 @@ export const users = [
     name: "Admin Master",
     birthdate: new Date("1998-10-20"),
     status: "ACTIVE",
-    addresses: {
+    addresses: { 
       companyMarket: new AddressEntity(companyMarket).getAttributes(),
     },
     contacts: contacts
