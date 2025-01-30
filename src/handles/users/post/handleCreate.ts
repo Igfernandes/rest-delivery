@@ -10,11 +10,17 @@ export class UserCreate {
     _event: APIGatewayProxyEventV2,
     _context: Context
   ): Promise<APIGatewayProxyStructuredResultV2> {
-    
+    try {
+      
 
-    return {
-      statusCode: statusCode.OK,
-      body: process.env.CUSTOM_VAR,
-    };
+
+      return {
+        statusCode: statusCode.OK,
+        body: process.env.CUSTOM_VAR,
+      };
+    } catch (err) {
+      console.log("")
+      throw console.log(err);
+    }
   }
 }
