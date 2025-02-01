@@ -1,20 +1,38 @@
 # Serverless Framework specific syntax
 
 UserCreate:
-  handler: ./src/handles/users/create.handler
+  handler: ./src/handles/users/post/index.handled
   role: FunctionRole
   events:
     - httpApi:
         path: /api/users
         method: POST
   environment:
-    CUSTOM_VAR: ${self:custom.customVariable1}
-UserUpdate:
-  handler: ./src/handles/users/update.handler
+    AWS_ACCESS_KEY_ID: ${self:custom.AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${self:custom.AWS_SECRET_ACCESS_KEY}
+    AWS_REGION: ${self:custom.AWS_REGION}
+    DATABASE_PREFIX: ${env:DATABASE_PREFIX}
+
+UserSearch:
+  handler: ./src/handles/users/get/index.handled
   role: FunctionRole
   events:
     - httpApi:
         path: /api/users
-        method: POST
+        method: GET
   environment:
-    CUSTOM_VAR: ${self:custom.customVariable1}
+    AWS_ACCESS_KEY_ID: ${self:custom.AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${self:custom.AWS_SECRET_ACCESS_KEY}
+    AWS_REGION: ${self:custom.AWS_REGION}
+
+UserSearchById:
+  handler: ./src/handles/users/get/index.handled
+  role: FunctionRole
+  events:
+    - httpApi:
+        path: /api/users/{id}
+        method: GET
+  environment:
+    AWS_ACCESS_KEY_ID: ${self:custom.AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${self:custom.AWS_SECRET_ACCESS_KEY}
+    AWS_REGION: ${self:custom.AWS_REGION}
