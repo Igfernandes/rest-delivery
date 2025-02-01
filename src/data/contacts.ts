@@ -1,4 +1,4 @@
-import { ContactProps } from "@database/dynamodb/entities/User/contact/type";
+import { ContactProps } from "@database/dynamodb/entities/User/user/type";
 
 export const contacts = [
   {

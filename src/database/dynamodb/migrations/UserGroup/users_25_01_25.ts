@@ -1,5 +1,5 @@
 import { UserEntity } from "@database/dynamodb/entities/User/user/userEntity";
-import { DynamodeExceptions } from "@database/dynamodb/types";
+import { DynamodeExceptions } from "@providers/dynamode/types";
 import { TableManager } from "dynamode";
 import { messages } from "src/constants/messages";
 
@@ -10,6 +10,7 @@ export class UsersMigration {
       const tableManager = new TableManager(UserEntity, {
         tableName: tableName,
         partitionKey: "objectId",
+        sortKey: "name",
       });
 
       const table = await tableManager.createTable();
@@ -17,7 +18,10 @@ export class UsersMigration {
     } catch (err: unknown) {
       const knowError = err as DynamodeExceptions;
 
-      if (knowError["__type"].includes("ResourceInUseException"))
+      if (
+        knowError["__type"] &&
+        knowError["__type"].includes("ResourceInUseException")
+      )
         return console.log(messages.errors.migration.alreadyCreated(tableName));
 
       throw err;

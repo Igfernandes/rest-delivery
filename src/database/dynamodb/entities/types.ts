@@ -1,4 +1,3 @@
-import { Entity } from "dynamode";
 import { UserEntity } from "./User/user/userEntity";
 
 export type EntityList = {

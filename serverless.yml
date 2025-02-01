@@ -1,21 +1,34 @@
 service: serverless-typescript-template
 
 plugins:
-  - - serverless-offline
+  - serverless-offline
+
+stages:
+  default:
+    resolvers:
+      shared-account:
+        type: aws
+        region: ${env:AWS_REGION}
+        accessKeyId: ${env:AWS_ACCESS_KEY_ID}
+        secretAccessKey: ${env:AWS_SECRET_ACCESS_KEY}
 
 provider:
   name: aws
+  region: ${env:AWS_REGION}
   runtime: nodejs20.x
-  region: us-west-2
   stage: ${opt:stage}
   logRetentionInDays: 180
   versionFunctions: false
   timeout: 30
-  environment:
-    STAGE: ${self:provider.stage}
+  resolver: shared-account
 
 custom:
   prefix: ${self:service}-${self:provider.stage}
+  STAGE: ${self:provider.stage}
+  AWS_ACCESS_KEY_ID: ${env:AWS_ACCESS_KEY_ID}
+  AWS_SECRET_ACCESS_KEY: ${env:AWS_SECRET_ACCESS_KEY}
+  AWS_REGION: ${env:AWS_REGION}
+  DATABASE_PREFIX: ${env:DATABASE_PREFIX}
 
 functions:
   - ${file(./resources/routes/user.yml)}

@@ -1,8 +1,6 @@
 import attribute from "dynamode/decorators";
 import { Entity } from "dynamode";
-import { UserProps } from "./type";
-import { ContactProps } from "../contact/type";
-import { AddressProps } from "../address/type";
+import { AddressProps, ContactProps, UserProps, UserStatus } from "./type";
 
 export class UserEntity extends Entity {
   /**
@@ -18,7 +16,7 @@ export class UserEntity extends Entity {
    * - (EN): The fullname of user.
    * - (pt-BR): O nome completo do usuário
    */
-  @attribute.string()
+  @attribute.sortKey.string()
   name: string;
 
   /**
@@ -35,15 +33,15 @@ export class UserEntity extends Entity {
    * - (pt-BR): O status do usuário. Possibilidades de status: 'Active', 'Inactive'.
    */
   @attribute.string()
-  status: string;
+  status: UserStatus;
 
   /**
    * @property {AddressProps} addresses
    * - (EN): The addresses of user.
    * - (pt-BR): Os endereços do usuário.
    */
-  @attribute.object()
-  addresses: Record<string, AddressProps>;
+  @attribute.array()
+  addresses: Array<AddressProps>;
 
   /**
    * @property {ContactProps} contacts
@@ -59,7 +57,7 @@ export class UserEntity extends Entity {
    * - (pt-BR): A data de criação do usuário por segundos.
    */
   @attribute.date.number()
-  createdAt: Date;
+  createdAt?: Date;
 
   /**
    * @property {Date} updatedAt
@@ -67,7 +65,7 @@ export class UserEntity extends Entity {
    * - (pt-BR): A data de atualização do usuário por segundos.
    */
   @attribute.date.number()
-  updatedAt: Date;
+  updatedAt?: Date;
 
   constructor({
     name,
@@ -81,11 +79,11 @@ export class UserEntity extends Entity {
   }: UserProps) {
     super();
 
-    this.objectId = objectId;
+    this.objectId = objectId ?? "";
     this.name = name;
     this.birthdate = birthdate;
     this.status = status;
-    this.addresses = addresses ?? {};
+    this.addresses = addresses ?? [];
     this.contacts = contacts ?? [];
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;

@@ -1,0 +1,27 @@
+{
+    "userData": {
+        "objectId": "PartitionKey String",
+        "name": "String(100)",
+        "birthdate": "Date(YYYY/mm/dd)",
+        "status": "Enum('ACTIVE', 'INACTIVE')",
+        "addresses": "Record<String,AddressData>",
+        "contacts": "Array<ContactData>",
+        "created_at": "Datetime(YYYY/mm/dd HH:mm:ss)",
+        "updated_at": "Datetime(YYYY/mm/dd HH:mm:ss)"
+    },
+    "addressData": {
+        "country": "String(50)",
+        "state": "String(50)",
+        "city": "String(100)",
+        "district": "String(100)",
+        "complement": "String(250)",
+        "number": "Number",
+        "zipCode": "Number"
+    },
+    "contactData": {
+        "label": "String(200)",
+        "value": "String(150)",
+        "isMain": "Boolean"
+    }
+  
+}

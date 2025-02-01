@@ -1,7 +1,7 @@
 import { messages } from "src/constants/messages";
 import { users } from "../../../data/users";
 import { UserEntity } from "../entities/User/user/userEntity";
-import { UserRepository } from "../repositories/userRepository";
+import { UserRepository } from "../repositories/users/userRepository";
 
 export class UserSeeds {
   public async run() {

@@ -3,13 +3,13 @@ import { Dynamode } from "dynamode";
 import { DynamodeInstance } from "./types";
 
 /**
- * @class InstanceDatabase
+ * @class ProviderDatabase
  * - Classe responsável por gerenciar a instância inicial para relacionamento com o banco de dados.
  *
  * @property {Dynamode} instance A propriedade responsável por armazenar a instância única.
  * @method {}
  */
-export class InstanceDatabase {
+export class ProviderDynamode {
   private instance: DynamodeInstance;
 
   constructor() {
@@ -31,5 +31,11 @@ export class InstanceDatabase {
     this.instance = Dynamode;
 
     return this.instance;
+  }
+
+  public execute() {
+    const providerDatabase = new ProviderDynamode();
+    const instanceDatabase = providerDatabase.getInstance();
+    instanceDatabase.ddb.local();
   }
 }

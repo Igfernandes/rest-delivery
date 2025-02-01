@@ -1,4 +1,4 @@
-import { AddressProps } from "@database/dynamodb/entities/User/address/type";
+import { AddressProps } from "@database/dynamodb/entities/User/user/type";
 
 export const addresses = {
   companyMarket: {
