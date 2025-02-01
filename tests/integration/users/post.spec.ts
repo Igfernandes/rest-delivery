@@ -1,6 +1,5 @@
 import { addresses } from "@data/addresses";
 import { contacts } from "@data/contacts";
-import { users } from "@data/users";
 import { describe, it, expect } from "@jest/globals";
 import { request } from "http";
 import { RequestOptions } from "https";
