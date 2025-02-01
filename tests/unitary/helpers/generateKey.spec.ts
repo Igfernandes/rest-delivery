@@ -1,5 +1,5 @@
 import { generateKey } from "@helpers/generateKey";
-import { messages } from "src/constants/messages";
+import { messages } from "@constants/messages";
 
 describe("Test all functions in file helper 'generateKey'", () => {
   describe("Test of generateKey:", () => {

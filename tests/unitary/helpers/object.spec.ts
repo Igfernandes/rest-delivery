@@ -1,4 +1,7 @@
-import { convertObjectValuesToArray } from "@helpers/object";
+import {
+  convertObjectValuesToArray,
+  removeEmptyObjects,
+} from "@helpers/object";
 import { messages } from "src/constants/messages";
 
 describe("Test all functions in file helper 'object'", () => {
@@ -44,6 +47,50 @@ describe("Test all functions in file helper 'object'", () => {
           convertObjectValuesToArray("Only String");
         } catch (err) {
           expect(err).toBe(messages.errors.values.invalid);
+        }
+      });
+    });
+  });
+
+  describe("Test of removeEmptyObjects:", () => {
+    const objectTest = {
+      onlyString: {
+        name: "Test",
+      },
+      onlyNumber: {},
+      onlyBoolean: {
+        otherValue: {},
+      },
+    };
+
+    describe("Success operations", () => {
+      it("Should return only objects with value", () => {
+        const objectReturn = removeEmptyObjects(objectTest);
+
+        expect(objectReturn).toEqual({
+          onlyString: {
+            name: "Test",
+          },
+        });
+      });
+    });
+
+    describe("Failed operations", () => {
+      it("Should show message of error of object passed invalid", () => {
+        try {
+          //@ts-ignore - Foi inserido para que seja possível forçar o erro sem o feedback do typescript.
+          removeEmptyObjects("Object Invalid");
+        } catch (err) {
+          expect(err).toBe(messages.errors.values.typeInvalid("objeto"));
+        }
+      });
+
+      it("Should show message of error array passed isn't object invalid", () => {
+        try {
+          //@ts-ignore - Foi inserido para que seja possível forçar o erro sem o feedback do typescript.
+          removeEmptyObjects([{}, "Only String"]);
+        } catch (err) {
+          expect(err).toBe(messages.errors.values.typeInvalid("objeto"));
         }
       });
     });
