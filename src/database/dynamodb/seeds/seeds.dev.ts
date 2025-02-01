@@ -1,9 +1,9 @@
-import { InstanceDatabase } from "../instanceDatabase";
+import { ProviderDynamode } from "@providers/dynamode";
 import { UserSeeds } from "./userSeeds";
 
 (async function () {
-  const instanceDb = new InstanceDatabase();
-  instanceDb.getInstance().ddb.local();
+  const providerDatabase = new ProviderDynamode();
+  providerDatabase.getInstance().ddb.local();
 
   /** USER GROUP */
   const userSeeds = new UserSeeds();

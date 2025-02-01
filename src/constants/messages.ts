@@ -10,6 +10,8 @@ export const messages = {
     },
     values: {
       invalid: "Valor passado encontra-se inválido.",
+      typeInvalid: (type: string) =>
+        `O valor passado é um tipo ${type} inválido`,
       onlyStrings:
         "Só podem ser passados nos parâmetros valores do tipo string",
     },

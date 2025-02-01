@@ -1,15 +1,27 @@
-import { AddressProps } from "../address/type";
-import { ContactProps } from "../contact/type";
+export type AddressProps = {
+  country: string;
+  state: string;
+  city: string;
+  district: string;
+  complement?: string;
+  number?: number;
+  zipCode: number;
+};
+export type ContactProps = {
+  label: string;
+  value: string;
+  isMain?: boolean;
+};
 
 export type UserProps = {
-  objectId: string;
+  objectId?: string;
   name: string;
   birthdate: Date;
   status: UserStatus;
-  addresses?: Record<string, AddressProps>;
+  addresses?: Array<AddressProps>;
   contacts?: Array<ContactProps>;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export type UserStatus = "ACTIVE" | "INACTIVE";

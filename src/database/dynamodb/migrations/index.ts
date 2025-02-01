@@ -1,9 +1,9 @@
-import { InstanceDatabase } from "../instanceDatabase";
+import { ProviderDynamode } from "@providers/dynamode";
 import { UsersMigration } from "./UserGroup/users_25_01_25";
 
 (async function () {
-  const instanceDb = new InstanceDatabase();
-  instanceDb.getInstance().ddb.local();
+  const providerDatabase = new ProviderDynamode();
+  providerDatabase.getInstance().ddb.local();
 
   /** USERS GROUP */
   const usersMigration = new UsersMigration();
