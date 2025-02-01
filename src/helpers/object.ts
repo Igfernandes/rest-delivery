@@ -21,22 +21,24 @@ export function convertObjectValuesToArray(
 }
 
 /**
- * @function removeEmptyObjects
+ * @function removeEmptyValuesInObjects
  * - (EN): The helper remove of struct in object anywhere proprieties empty.
  * - (pt-BR): O Helper remove de um objeto todas as propriedades com valores vazios.
  *
  * @param {object} data O objeto que será manipulado.
  * @returns {object} O objeto filtrado.
  */
-export function removeEmptyObjects(data: object): Object | null {
+export function removeEmptyValuesInObjects(data: object): Object | null {
   if (typeof data == "object" && Array.isArray(data))
     throw messages.errors.values.typeInvalid("objeto");
+
+  if (!data) return null;
 
   const matrizFiltered = Object.entries(data).filter(
     ([KeyObject, valueObject]) => {
       if (!!valueObject && typeof valueObject != "object") return true;
 
-      return removeEmptyObjects(valueObject);
+      return removeEmptyValuesInObjects(valueObject);
     }
   );
 
