@@ -29,6 +29,6 @@ export const handled = async (
   } catch (err: unknown) {
     const exceptionRequest = new ExceptionRequest();
 
-    throw exceptionRequest.getExceptionYup(err);
+    return  exceptionRequest.getExceptionYup(err);
   }
 };

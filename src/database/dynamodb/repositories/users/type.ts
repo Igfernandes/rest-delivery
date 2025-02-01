@@ -11,8 +11,6 @@ export type AddressSearchProps = {
   state?: string;
   city?: string;
   district?: string;
-  complement?: string;
-  number?: number;
   zipCode?: number;
 };
 export type ContactSearchProps = {
@@ -27,6 +25,8 @@ export type UserSearchProps = {
   name_contains?: string;
   birthdate?: Date;
   status?: UserStatus;
+  address?: AddressSearchProps;
+  contact?: ContactSearchProps;
   createdAt?: Date;
   updatedAt?: Date;
 };

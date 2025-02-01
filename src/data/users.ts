@@ -7,7 +7,7 @@ const { companyMarket, home, university } = addresses;
 
 export const users = [
   {
-    objectId: generateKey("adm", "master"),
+    objectId: "adm_.1738377174545.master",
     name: "Admin Master",
     birthdate: new Date("1998-10-20"),
     status: "ACTIVE",
@@ -17,7 +17,7 @@ export const users = [
     updatedAt: new Date(),
   },
   {
-    objectId: generateKey("adm", "test"),
+    objectId:"adm_.1738377174545.test",
     name: "Admin Test",
     birthdate: new Date("1995-12-20"),
     status: "ACTIVE",
@@ -27,7 +27,7 @@ export const users = [
     updatedAt: new Date(),
   },
   {
-    objectId: generateKey("only", "read"),
+    objectId: "only_.1738377174545.read",
     name: "Only Desative User",
     birthdate: new Date("2002-05-05"),
     status: "INACTIVE",

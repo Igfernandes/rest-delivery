@@ -12,6 +12,14 @@ export const messages = {
       invalid: "Valor passado encontra-se inválido.",
       typeInvalid: (type: string) =>
         `O valor passado é um tipo ${type} inválido`,
+      min: (field: string, length: number) =>
+        `O ${field} deve conter no mínimo ${length} caractere(s)`,
+      max: (field: string, length: number) =>
+        `O ${field} deve conter no max ${length} caractere(s)`,
+      length: (field: string, length: number) =>
+        `O ${field} deve conter ${length} caractere(s)`,
+      optionInvalid: (field: string) =>
+        `O ${field} não é uma opção válida`,
       onlyStrings:
         "Só podem ser passados nos parâmetros valores do tipo string",
     },
