@@ -2,7 +2,12 @@ import { UserProps } from "../../entities/User/user/type";
 import { UserEntity } from "../../entities/User/user/userEntity";
 import { IRepository } from "../IRepository";
 import { TableManager } from "dynamode";
-import { UserSearchProps } from "./type";
+import {
+  UserDeleteProps,
+  UserSearchProps,
+  UserSearchReturn,
+  UserUpdateProps,
+} from "./type";
 import { ProviderDynamode } from "@providers/dynamode";
 
 const providerDatabase = new ProviderDynamode();
@@ -36,26 +41,13 @@ export class UserRepository implements IRepository {
   }
 
   public async update(
-    { objectId, name, addresses, contacts, ...where }: UserSearchProps,
-    entity: UserEntity
+    where: UserUpdateProps,
+    data: UserProps
   ): Promise<UserEntity | false> {
     try {
-      Object.entries(where).forEach(([propName, propValue]) => {
-        this.dynamodb
-          .condition()
-          .attribute(propName as keyof UserProps)
-          .eq(propValue);
+      const user = await this.dynamodb.update(where, {
+        set: data,
       });
-
-      const user = await this.dynamodb.update(
-        {
-          objectId,
-          name: name ?? "",
-        },
-        {
-          setIfNotExists: {},
-        }
-      );
 
       return user;
     } catch (err) {
@@ -65,25 +57,9 @@ export class UserRepository implements IRepository {
     }
   }
 
-  public async delete({
-    objectId,
-    name,
-    addresses,
-    contacts,
-    ...where
-  }: UserSearchProps): Promise<boolean> {
+  public async delete(where: UserDeleteProps): Promise<boolean> {
     try {
-      Object.entries(where).forEach(([propName, propValue]) => {
-        this.dynamodb
-          .condition()
-          .attribute(propName as keyof UserProps)
-          .eq(propValue);
-      });
-
-      await this.dynamodb.delete({
-        objectId,
-        name: name ?? "",
-      });
+      await this.dynamodb.delete(where);
 
       return true;
     } catch (err) {
@@ -92,38 +68,48 @@ export class UserRepository implements IRepository {
     }
   }
 
-  public async findAll(where: UserSearchProps): Promise<UserEntity[]> {
+  public async findAll({
+    name_contains,
+    ...where
+  }: UserSearchProps): Promise<UserSearchReturn> {
     try {
-      console.log(
-        await this.dynamodb
-          .scan()
-          .condition()
-          .attribute("addresses.*.country" as any)
-          /** @ts-ignore */
-          .eq("Brazil")
-          .run()
-      );
-      // const queryWhere = where.addresses
-      // const user = await this.dynamodb
-      //   .query()
-      //   .sort("descending")
-      //   .run({ return: "output" });
+      let queryBuilder = this.dynamodb.scan();
 
-      return [
-        new UserEntity({
-          updatedAt: new Date(),
-          status: "ACTIVE",
-          objectId: "seial",
-          name: "teste",
-          createdAt: new Date(),
-          birthdate: new Date(),
-        }),
-      ];
+      if (!where["objectId"]) delete where.objectId;
+
+      Object.entries(where).forEach(async ([columnName, columnValue]) => {
+        queryBuilder = queryBuilder
+          .attribute(columnName as keyof UserProps)
+          .eq(columnValue);
+      });
+
+      if (name_contains) queryBuilder.attribute("name").contains(name_contains);
+
+      return queryBuilder.run();
     } catch (err) {
       console.log(err);
       throw err;
     }
   }
 
-  //   findFirst(where: object): Promise<UserEntity> {}
+  public async findFirst(where: UserSearchProps): Promise<UserEntity> {
+    try {
+      let queryBuilder = this.dynamodb.scan();
+
+      if (!where["objectId"]) delete where.objectId;
+
+      Object.entries(where).forEach(async ([columnName, columnValue]) => {
+        queryBuilder = queryBuilder
+          .attribute(columnName as keyof UserProps)
+          .eq(columnValue);
+      });
+
+      const foundUser = await queryBuilder.run();
+
+      return foundUser.items[0];
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
 }

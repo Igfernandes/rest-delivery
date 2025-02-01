@@ -1,4 +1,10 @@
 import { UserStatus } from "@database/dynamodb/entities/User/user/type";
+import { UserEntity } from "@database/dynamodb/entities/User/user/userEntity";
+
+export type UserSearchReturn = {
+  count: number;
+  items: UserEntity[];
+};
 
 export type AddressSearchProps = {
   country?: string;
@@ -16,14 +22,19 @@ export type ContactSearchProps = {
 };
 
 export type UserSearchProps = {
-  objectId: string;
+  objectId?: string;
   name?: string;
+  name_contains?: string;
   birthdate?: Date;
   status?: UserStatus;
-  addresses?: Record<string, AddressSearchProps>;
-  contacts?: Array<ContactSearchProps>;
   createdAt?: Date;
   updatedAt?: Date;
 };
 
+export type UserPrimeKeyProps = {
+  objectId: string;
+  name: string;
+};
 
+export type UserDeleteProps = UserPrimeKeyProps;
+export type UserUpdateProps = UserPrimeKeyProps;
