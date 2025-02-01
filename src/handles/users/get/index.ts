@@ -6,8 +6,12 @@ import type {
 import { statusCode } from "src/constants/statusCode";
 import { userSchema } from "./dto";
 import { UserSearchBusiness } from "src/business/users/search/UserSearchBusiness";
-import { removeEmptyObjects } from "@helpers/object";
+import { removeEmptyValuesInObjects } from "@helpers/object";
 import { ExceptionRequest } from "@helpers/ExceptionRequest";
+import {
+  AddressProps,
+  ContactProps,
+} from "@database/dynamodb/entities/User/user/type";
 
 export const handled = async (
   _event: APIGatewayProxyEventV2,
@@ -16,13 +20,33 @@ export const handled = async (
   try {
     const userSearchBusiness = new UserSearchBusiness();
 
-    const payload = await userSchema.validate(
-      _event.queryStringParameters ?? {}
-    );
+    const {
+      country,
+      state,
+      city,
+      district,
+      zipCode,
+      value,
+      label,
+      isMain,
+      ...payload
+    } = await userSchema.validate(_event.queryStringParameters ?? {});
 
     const response = await userSearchBusiness.execute({
-      ...(removeEmptyObjects(payload) ?? {}),
+      ...(removeEmptyValuesInObjects(payload) ?? {}),
       objectId: _event["pathParameters"]?.id as string,
+      address: removeEmptyValuesInObjects({
+        country,
+        state,
+        city,
+        district,
+        zipCode,
+      }) as AddressProps,
+      contact: removeEmptyValuesInObjects({
+        value,
+        label,
+        isMain,
+      }) as ContactProps,
     });
 
     return {
