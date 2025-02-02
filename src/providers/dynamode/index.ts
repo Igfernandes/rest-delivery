@@ -16,6 +16,13 @@ export class ProviderDynamode {
     this.instance = this.getInstance();
   }
 
+  /**
+   * @method getInstance
+   * - (EN): The method returns the database instance of dynamodb
+   * - (pt-BR): O método retorna a instância do banco de dados of dynamodb
+   *
+   * @returns {DynamodeInstance}
+   */
   public getInstance(): DynamodeInstance {
     if (this.instance) return this.instance;
 
@@ -32,6 +39,14 @@ export class ProviderDynamode {
 
     return this.instance;
   }
+
+  /**
+   * @method execute
+   * - (EN): The method execute instância in system
+   * - (pt-BR): O método executa a instância no sistema.s
+   *
+   * @returns {DynamodeInstance}
+   */
 
   public execute() {
     const providerDatabase = new ProviderDynamode();

@@ -15,3 +15,8 @@ export type UserSearchBusinessResponse =
       count: number;
     }
   | UserProps;
+
+export type OptionsInformationUser = "addresses" | "contacts";
+
+export type KeysOfAddressAndContactType = keyof AddressSearchProps &
+  keyof ContactSearchProps;
