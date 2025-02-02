@@ -49,3 +49,16 @@ UserUpdate:
     AWS_SECRET_ACCESS_KEY: ${self:custom.AWS_SECRET_ACCESS_KEY}
     AWS_REGION: ${self:custom.AWS_REGION}
     DATABASE_PREFIX: ${env:DATABASE_PREFIX}
+
+UserDelete:
+  handler: ./src/handles/users/delete/index.handled
+  role: FunctionRole
+  events:
+    - httpApi:
+        path: /api/users/{objectId}
+        method: DELETE
+  environment:
+    AWS_ACCESS_KEY_ID: ${self:custom.AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${self:custom.AWS_SECRET_ACCESS_KEY}
+    AWS_REGION: ${self:custom.AWS_REGION}
+    DATABASE_PREFIX: ${env:DATABASE_PREFIX}
