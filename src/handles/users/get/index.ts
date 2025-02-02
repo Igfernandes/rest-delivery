@@ -34,7 +34,7 @@ export const handled = async (
 
     const response = await userSearchBusiness.execute({
       ...(removeEmptyValuesInObjects(payload) ?? {}),
-      objectId: _event["pathParameters"]?.id as string,
+      objectId: _event["pathParameters"]?.objectId as string,
       address: removeEmptyValuesInObjects({
         country,
         state,

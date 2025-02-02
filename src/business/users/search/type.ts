@@ -1,7 +1,14 @@
 import { UserProps } from "@database/dynamodb/entities/User/user/type";
-import { UserSearchProps } from "@database/dynamodb/repositories/users/type";
+import {
+  AddressSearchProps,
+  ContactSearchProps,
+  UserSearchProps,
+} from "@database/dynamodb/repositories/users/type";
 
-export type UserSearchBusinessRequest = UserSearchProps;
+export type UserSearchBusinessRequest = UserSearchProps & {
+  contact: ContactSearchProps;
+  address: AddressSearchProps;
+};
 export type UserSearchBusinessResponse =
   | {
       items: UserProps[];

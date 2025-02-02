@@ -17,7 +17,7 @@ export const users = [
     updatedAt: new Date(),
   },
   {
-    objectId:"adm_.1738377174545.test",
+    objectId: "adm_.1738377174545.test",
     name: "Admin Test",
     birthdate: new Date("1995-12-20"),
     status: "ACTIVE",
