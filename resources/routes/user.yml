@@ -30,9 +30,22 @@ UserSearchById:
   role: FunctionRole
   events:
     - httpApi:
-        path: /api/users/{id}
+        path: /api/users/{objectId}
         method: GET
   environment:
     AWS_ACCESS_KEY_ID: ${self:custom.AWS_ACCESS_KEY_ID}
     AWS_SECRET_ACCESS_KEY: ${self:custom.AWS_SECRET_ACCESS_KEY}
     AWS_REGION: ${self:custom.AWS_REGION}
+
+UserUpdate:
+  handler: ./src/handles/users/put/index.handled
+  role: FunctionRole
+  events:
+    - httpApi:
+        path: /api/users/{objectId}
+        method: PUT
+  environment:
+    AWS_ACCESS_KEY_ID: ${self:custom.AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${self:custom.AWS_SECRET_ACCESS_KEY}
+    AWS_REGION: ${self:custom.AWS_REGION}
+    DATABASE_PREFIX: ${env:DATABASE_PREFIX}
