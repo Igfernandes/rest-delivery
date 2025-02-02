@@ -17,8 +17,8 @@ const USER_PAYLOAD = {
 
 const USER_ENDPOINT = `http://localhost:3000/api/users/${users[2].objectId}`;
 
-describe("Should Post User", () => {
-  it("Should create an user", async () => {
+describe("Should PUT User", () => {
+  it("Should update an user", async () => {
     const response = await axios.put(USER_ENDPOINT, USER_PAYLOAD);
 
     expect(response.status).toBe(statusCode.OK);
