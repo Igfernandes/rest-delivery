@@ -9,8 +9,7 @@ export class UsersMigration {
     try {
       const tableManager = new TableManager(UserEntity, {
         tableName: tableName,
-        partitionKey: "objectId",
-        sortKey: "name",
+        partitionKey: "objectId"
       });
 
       const table = await tableManager.createTable();
