@@ -1,4 +1,8 @@
-import { UserProps } from "../../entities/User/user/type";
+import {
+  AddressProps,
+  ContactProps,
+  UserProps,
+} from "../../entities/User/user/type";
 import { UserEntity } from "../../entities/User/user/userEntity";
 import { IRepository } from "../IRepository";
 import { TableManager } from "dynamode";
@@ -9,6 +13,7 @@ import {
   UserUpdateProps,
 } from "./type";
 import { ProviderDynamode } from "@providers/dynamode";
+import { removeEmptyValuesInObjects } from "@helpers/object";
 
 const providerDatabase = new ProviderDynamode();
 providerDatabase.execute();
@@ -16,7 +21,6 @@ providerDatabase.execute();
 const tableManager = new TableManager(UserEntity, {
   tableName: "users",
   partitionKey: "objectId",
-  sortKey: "name",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 });
@@ -42,11 +46,28 @@ export class UserRepository implements IRepository {
 
   public async update(
     where: UserUpdateProps,
-    data: UserProps
+    { addresses, contacts, objectId, ...data }: UserProps
   ): Promise<UserEntity | false> {
     try {
+      const whereFiltered = Object.fromEntries(
+        Object.entries(data).filter(([colName, colValue]) => !!colValue)
+      );
+
       const user = await this.dynamodb.update(where, {
-        set: data,
+        set: {
+          ...whereFiltered,
+          addresses: addresses
+            ?.map((address) => removeEmptyValuesInObjects(address))
+            .filter(
+              (address) => !!address && Object.values(address).length > 0
+            ) as AddressProps[],
+          contacts: contacts
+            ?.map((contact) => removeEmptyValuesInObjects(contact))
+            .filter(
+              (contact) => !!contact && Object.values(contact).length > 0
+            ) as ContactProps[],
+          updatedAt: new Date(),
+        },
       });
 
       return user;
@@ -64,7 +85,7 @@ export class UserRepository implements IRepository {
       return true;
     } catch (err) {
       console.log(err);
-      return false;
+      throw err;
     }
   }
 

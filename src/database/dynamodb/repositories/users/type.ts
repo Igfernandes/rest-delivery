@@ -25,15 +25,12 @@ export type UserSearchProps = {
   name_contains?: string;
   birthdate?: Date;
   status?: UserStatus;
-  address?: AddressSearchProps;
-  contact?: ContactSearchProps;
   createdAt?: Date;
   updatedAt?: Date;
 };
 
 export type UserPrimeKeyProps = {
   objectId: string;
-  name: string;
 };
 
 export type UserDeleteProps = UserPrimeKeyProps;

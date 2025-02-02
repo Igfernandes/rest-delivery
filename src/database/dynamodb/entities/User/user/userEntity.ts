@@ -16,7 +16,7 @@ export class UserEntity extends Entity {
    * - (EN): The fullname of user.
    * - (pt-BR): O nome completo do usuário
    */
-  @attribute.sortKey.string()
+  @attribute.string()
   name: string;
 
   /**

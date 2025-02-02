@@ -5,21 +5,23 @@ import type {
 } from "aws-lambda";
 import { statusCode } from "src/constants/statusCode";
 import { userSchema } from "./dto";
-import { UserSaveBusiness } from "src/business/users/save";
 import { ExceptionRequest } from "@helpers/ExceptionRequest";
+import { UserUpdateBusiness } from "src/business/users/update";
 
 export const handled = async (
   _event: APIGatewayProxyEventV2,
   _context: Context
 ): Promise<APIGatewayProxyStructuredResultV2> => {
   try {
-    const userSaveBusiness = new UserSaveBusiness();
-    const payload = await userSchema.validate(JSON.parse(_event.body ?? ""));
+    const userUpdateBusiness = new UserUpdateBusiness();
+    const payload = await userSchema.validate({
+      ...JSON.parse(_event.body ?? ""),
+      objectId: _event["pathParameters"]?.objectId,
+    });
 
-    const response = await userSaveBusiness.execute({
+    const response = await userUpdateBusiness.execute({
       ...payload,
       birthdate: new Date(payload.birthdate),
-      status: "ACTIVE",
     });
 
     return {
@@ -29,6 +31,6 @@ export const handled = async (
   } catch (err: unknown) {
     const exceptionRequest = new ExceptionRequest();
 
-    return  exceptionRequest.getExceptionYup(err);
+    return exceptionRequest.getExceptionYup(err);
   }
 };

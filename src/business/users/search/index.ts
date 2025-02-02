@@ -19,7 +19,12 @@ export class UserSearchBusiness {
   }: UserSearchBusinessRequest): Promise<UserSearchBusinessResponse> {
     const userRepository = new UserRepository();
 
-    if (props.objectId) return userRepository.findFirst(props);
+    if (props.objectId) {
+      const { dynamodeEntity, ...foundUserRestProps } =
+        (await userRepository.findFirst(props)) ?? {};
+
+      return foundUserRestProps;
+    }
 
     let { items, count } = await userRepository.findAll(props);
 

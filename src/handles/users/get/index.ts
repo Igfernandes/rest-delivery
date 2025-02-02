@@ -5,7 +5,7 @@ import type {
 } from "aws-lambda";
 import { statusCode } from "src/constants/statusCode";
 import { userSchema } from "./dto";
-import { UserSearchBusiness } from "src/business/users/search/UserSearchBusiness";
+import { UserSearchBusiness } from "src/business/users/search";
 import { removeEmptyValuesInObjects } from "@helpers/object";
 import { ExceptionRequest } from "@helpers/ExceptionRequest";
 import {
@@ -34,7 +34,7 @@ export const handled = async (
 
     const response = await userSearchBusiness.execute({
       ...(removeEmptyValuesInObjects(payload) ?? {}),
-      objectId: _event["pathParameters"]?.id as string,
+      objectId: _event["pathParameters"]?.objectId as string,
       address: removeEmptyValuesInObjects({
         country,
         state,

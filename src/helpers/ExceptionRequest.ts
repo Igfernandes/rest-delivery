@@ -8,7 +8,7 @@ export class ExceptionRequest {
     return {
       statusCode: statusCode.BAD_REQUEST,
       body: JSON.stringify({
-        errors: error.errors,
+        errors: error.errors
       }),
     };
   }
