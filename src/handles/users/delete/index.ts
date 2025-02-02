@@ -6,23 +6,19 @@ import type {
 import { statusCode } from "src/constants/statusCode";
 import { userSchema } from "./dto";
 import { ExceptionRequest } from "@helpers/ExceptionRequest";
-import { UserUpdateBusiness } from "src/business/users/update";
+import { UserDeleteBusiness } from "src/business/users/delete";
 
 export const handled = async (
   _event: APIGatewayProxyEventV2,
   _context: Context
 ): Promise<APIGatewayProxyStructuredResultV2> => {
   try {
-    const userUpdateBusiness = new UserUpdateBusiness();
+    const userDeleteBusiness = new UserDeleteBusiness();
     const payload = await userSchema.validate({
-      ...JSON.parse(_event.body ?? ""),
       objectId: _event["pathParameters"]?.objectId,
     });
 
-    const response = await userUpdateBusiness.execute({
-      ...payload,
-      birthdate: new Date(payload.birthdate),
-    });
+    const response = await userDeleteBusiness.execute(payload);
 
     return {
       statusCode: statusCode.OK,
