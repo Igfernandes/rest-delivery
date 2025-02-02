@@ -21,7 +21,7 @@ export class UserSearchBusiness {
 
     if (props.objectId) {
       const { dynamodeEntity, ...foundUserRestProps } =
-        await userRepository.findFirst(props);
+        (await userRepository.findFirst(props)) ?? {};
 
       return foundUserRestProps;
     }
