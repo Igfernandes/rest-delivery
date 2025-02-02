@@ -5,7 +5,7 @@ import type {
 } from "aws-lambda";
 import { statusCode } from "src/constants/statusCode";
 import { userSchema } from "./dto";
-import { UserSaveBusiness } from "src/business/users/save/UserSaveBusiness";
+import { UserSaveBusiness } from "src/business/users/save";
 import { ExceptionRequest } from "@helpers/ExceptionRequest";
 
 export const handled = async (

@@ -6,7 +6,7 @@ import type {
 import { statusCode } from "src/constants/statusCode";
 import { userSchema } from "./dto";
 import { ExceptionRequest } from "@helpers/ExceptionRequest";
-import { UserUpdateBusiness } from "src/business/users/update/UserUpdateBusiness";
+import { UserUpdateBusiness } from "src/business/users/update";
 
 export const handled = async (
   _event: APIGatewayProxyEventV2,

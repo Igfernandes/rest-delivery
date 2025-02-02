@@ -5,7 +5,7 @@ import type {
 } from "aws-lambda";
 import { statusCode } from "src/constants/statusCode";
 import { userSchema } from "./dto";
-import { UserSearchBusiness } from "src/business/users/search/UserSearchBusiness";
+import { UserSearchBusiness } from "src/business/users/search";
 import { removeEmptyValuesInObjects } from "@helpers/object";
 import { ExceptionRequest } from "@helpers/ExceptionRequest";
 import {
