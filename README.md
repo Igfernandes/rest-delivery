@@ -15,6 +15,8 @@
 
 - A API desenvolvida foi uma proposta de demonstração de conhecimento utilizando Node.JS com typescript encima dos serviços da AWS, utilizando uma arquitetura serverless e o serviço lambda da AWS. Sem o objetivo de aprofundar em uma proposta mais robusta, no sistema apenas foi elaborado encima de uma entidade "User" no banco de dados dynamodb NoSql.
 
+Acesse o Postman: https://www.postman.com/companymarket/workspace/presentations/collection/22921077-38909669-cb31-48dd-b034-b9130d6c9954?action=share&creator=22921077
+
 ### VERSIONS:
 
 - [nvm](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html): _1.2.2_
